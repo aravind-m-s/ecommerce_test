@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1099362626878",
+    "project_id": "ecommerce-test-7dfa4",
+    "storage_bucket": "ecommerce-test-7dfa4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099362626878:android:8c7ff30881ef590a64506f",
+        "android_client_info": {
+          "package_name": "in.aravind.ecommerce_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099362626878-joo6hsletv7hh07n93qguclevmr5mc17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx1sV5hI7U4vyf5VNMROjirh3E_3fXRT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1099362626878-joo6hsletv7hh07n93qguclevmr5mc17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
