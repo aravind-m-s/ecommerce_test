@@ -1,4 +1,6 @@
 import 'package:ecommerce_test/core/constants.dart';
+import 'package:ecommerce_test/view/screen_home/screen_home.dart';
+import 'package:ecommerce_test/view/screen_register/screen_register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,33 +16,41 @@ class ScreenLogin extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const LogoWidget(),
-              kHeight10,
-              const Text("Login / Register",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-              kHeight20,
-              const Text('Email ID/Mobile No.',
-                  style: TextStyle(fontWeight: FontWeight.w500)),
-              kHeight10,
-              InputFields(formKey: formKey, email: email, password: password),
-              kHeight40,
-              ConfirmButton(
-                formKey: formKey,
-                email: email,
-                password: password,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const LogoWidget(),
+                  kHeight10,
+                  const Text("Login",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  kHeight20,
+                  const Text('Email ID',
+                      style: TextStyle(fontWeight: FontWeight.w500)),
+                  InputFields(
+                      formKey: formKey, email: email, password: password),
+                  kHeight40,
+                  ConfirmButton(
+                    formKey: formKey,
+                    email: email,
+                    password: password,
+                  ),
+                  kHeight40,
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const ScreenRegister(),
+                        ));
+                      },
+                      child: const Text('New to FirstCry? Register Here'),
+                    ),
+                  )
+                ],
               ),
-              kHeight40,
-              Center(
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text('New to FirstCry? Register Here'),
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
@@ -82,8 +92,15 @@ class ConfirmButton extends StatelessWidget {
 
   _validate(email, password, context) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email.text.trim(), password: password.text.trim());
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then((value) =>
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const ScreenHome(),
+              )));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("LogInsuccefull")));
     } catch (e) {
       String error = '';
       if (e.toString().contains('wrong-password')) {
@@ -128,6 +145,7 @@ class InputFields extends StatelessWidget {
     return Form(
       key: formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
             controller: email,
@@ -147,7 +165,8 @@ class InputFields extends StatelessWidget {
                 hintText: "Enter your Email ID ",
                 hintStyle: TextStyle(fontSize: 13)),
           ),
-          kHeight10,
+          kHeight40,
+          const Text('Password', style: TextStyle(fontWeight: FontWeight.w500)),
           TextFormField(
             controller: password,
             obscureText: true,
