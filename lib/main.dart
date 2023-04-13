@@ -1,6 +1,5 @@
 import 'package:ecommerce_test/view/screen_home/screen_home.dart';
 import 'package:ecommerce_test/view/screen_login/screen_login.dart';
-import 'package:ecommerce_test/view/screen_product_details/screen_product_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      home: FirebaseAuth.instance.currentUser == null
-          ? const ScreenLogin()
-          : const ScreenHome(),
+      // home: FirebaseAuth.instance.currentUser == null
+      //     ? const ScreenLogin()
+      //     : const ScreenHome(),
+      home: ScreenHome(),
     );
   }
 }

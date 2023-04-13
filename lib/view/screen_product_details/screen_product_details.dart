@@ -130,9 +130,9 @@ class RecommendecProducts extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => Column(
                 children: [
-                  const Image(
+                  Image(
                     image: AssetImage(
-                      'assets/shirt_1.png',
+                      'assets/shirt_${index + 1}.png',
                     ),
                     width: 120,
                   ),
@@ -160,7 +160,7 @@ class RecommendecProducts extends StatelessWidget {
           separatorBuilder: (context, index) => const SizedBox(
                 width: 20,
               ),
-          itemCount: 5),
+          itemCount: 4),
     );
   }
 }
@@ -393,49 +393,56 @@ class DeliveryAndCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      children: const [CheckDelivery(), kHeight10, CartAndShortList()],
+    );
+  }
+}
+
+class CartAndShortList extends StatelessWidget {
+  const CartAndShortList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
       children: [
-        const CheckDelivery(),
-        kHeight10,
-        Row(
-          children: [
-            SizedBox(
-              width: (MediaQuery.of(context).size.width - 42) / 2,
-              height: 50,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange[700],
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'ADD TO CART',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  )),
-            ),
-            kWidth10,
-            SizedBox(
-              width: (MediaQuery.of(context).size.width - 42) / 2,
-              height: 50,
-              child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white, side: const BorderSide()),
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_outline,
-                    color: Colors.grey,
-                  ),
-                  label: const Text(
-                    'SHORTLIST',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  )),
-            ),
-          ],
-        )
+        SizedBox(
+          width: (MediaQuery.of(context).size.width - 42) / 2,
+          height: 50,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange[700],
+              ),
+              onPressed: () {},
+              child: const Text(
+                'ADD TO CART',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              )),
+        ),
+        kWidth10,
+        SizedBox(
+          width: (MediaQuery.of(context).size.width - 42) / 2,
+          height: 50,
+          child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, side: const BorderSide()),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.favorite_outline,
+                color: Colors.grey,
+              ),
+              label: const Text(
+                'SHORTLIST',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              )),
+        ),
       ],
     );
   }
