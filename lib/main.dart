@@ -19,10 +19,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      // home: FirebaseAuth.instance.currentUser == null
-      //     ? const ScreenLogin()
-      //     : const ScreenHome(),
-      home: ScreenHome(),
+      home: FirebaseAuth.instance.currentUser == null
+          ? const ScreenLogin()
+          : const ScreenHome(),
     );
   }
 }
